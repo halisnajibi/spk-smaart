@@ -1,0 +1,39 @@
+Laporan Kriteria SMART:
+
+Menampilkan daftar kriteria yang digunakan dalam pengambilan keputusan.
+Menunjukkan bobot (weight) yang diberikan pada masing-masing kriteria.
+Laporan Alternatif:
+
+Menampilkan daftar alternatif yang sedang dievaluasi dalam konteks keputusan yang diambil.
+Memberikan informasi deskriptif mengenai setiap alternatif.
+Laporan Penilaian:
+
+Menunjukkan hasil penilaian terhadap setiap alternatif berdasarkan kriteria-kriteria yang ada.
+Menggambarkan penilaian numerik atau peringkat untuk setiap alternatif.
+Laporan Skor SMART:
+
+Menghitung dan menampilkan skor SMART (Specific, Measurable, Achievable, Relevant, Time-bound) untuk setiap alternatif.
+Skor ini mencerminkan sejauh mana setiap alternatif memenuhi kriteria SMART.
+Laporan Perankingan:
+
+Mengurutkan alternatif berdasarkan skor SMART mereka.
+Menunjukkan peringkat masing-masing alternatif dari yang terbaik hingga yang terburuk.
+Laporan Analisis Sensitivitas:
+
+Menganalisis sensitivitas hasil dengan mengubah bobot kriteria atau nilai penilaian.
+Menunjukkan bagaimana perubahan pada faktor-faktor ini memengaruhi peringkat alternatif.
+Laporan Grafik Visual:
+
+Menghasilkan grafik atau diagram visual untuk memvisualisasikan perbandingan skor atau peringkat alternatif.
+Contoh: diagram batang atau diagram lingkaran untuk perbandingan kriteria atau peringkat alternatif.
+Laporan Rekomendasi:
+
+Berdasarkan peringkat dan skor SMART, menghasilkan rekomendasi alternatif yang paling sesuai untuk dipilih.
+Laporan Sejarah Keputusan:
+
+Melacak keputusan-keputusan sebelumnya yang diambil dengan menggunakan aplikasi ini.
+Menyimpan catatan tentang alternatif yang dipilih, skor SMART, dan alasan di balik keputusan tersebut.
+Laporan Export Data:
+
+Memberikan opsi untuk mengunduh data hasil evaluasi dalam format yang dapat digunakan lebih lanjut dalam berbagai aplikasi atau perangkat lunak.
+Dalam praktiknya, jenis-jenis laporan ini bisa disesuaikan dengan kebutuhan dan kompleksitas pengambilan keputusan yang dihadapi oleh organisasi atau individu yang menggunakan aplikasi ini.
