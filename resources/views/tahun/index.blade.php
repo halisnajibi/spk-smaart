@@ -46,7 +46,7 @@
                         </td>
                         <td class="text-center border-b">
                             <div class="flex sm:justify-center">
-                                <div class="intro-x w-10 h-10 image-fit">
+                                <div class="intro-x w-20 h-10 image-fit">
                                     {{ $tahun->kode}}
                                 </div>
                             </div>

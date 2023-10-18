@@ -9,12 +9,12 @@
         <form class="validate-form" action="/tahun/{{ $tahun->id }}" method="POST">
             @method('put')
             @csrf
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label class="flex flex-col sm:flex-row"> Kode Tahun <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">Wajib Diisi, Unik</span> </label> <input type="text" name="kode" class="input w-full border mt-2  @error('kode') error @enderror()" value="{{ $tahun->kode }}" required> 
                 @error('kode')
                 <label id="name-error" class="error" for="name">{{ $message }}</label>
                 @enderror
-               </div>
+               </div> --}}
             <div class="mb-3">
                  <label class="flex flex-col sm:flex-row"> Tahun <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">Wajib Diisi</span> </label> <input type="number" name="tahun" class="input w-full border mt-2  @error('tahun') error @enderror()" required value="{{ $tahun->tahun }}"> 
                  @error('tahun')

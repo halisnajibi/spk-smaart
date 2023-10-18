@@ -51,12 +51,13 @@ class KriteriaController extends Controller
     {
         $validateData = $request->validate([
             'tahun_id' => 'required',
-            'kode_kriteria' => 'required|unique:kriterias',
             'nama_kriteria' => 'required',
             'bobot' => 'required',
             'label' => 'required'
           ]);
-        //   $validateData['tahun_id'] = $request->tahun_id;
+          $validateData['tahun_id'] = $request->tahun_id;
+          $tahun = Tahun::find($request->tahun_id);
+          $validateData['kode_kriteria'] = 'k'.'-'.$tahun->tahun.'-'.Str::random(3);
           Kriteria::create($validateData);
           return \redirect('/kriteria')->with('alert','Data kriteria disimpan');
     }
@@ -100,9 +101,6 @@ class KriteriaController extends Controller
             'bobot' => 'required',
             'label' => 'required'
         ];
-        if($request->kode_kriteria != $kriteria->kode_kriteria){
-           $rules['kode_kriteria'] ='required|unique:kriterias';
-        }
         $validateData = $request->validate($rules);
           Kriteria::Where('id',$id)->update($validateData);
           return \redirect('/kriteria')->with('alert','Data kriteria diupdate');

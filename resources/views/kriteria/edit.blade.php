@@ -9,7 +9,7 @@
         <form class="validate-form" novalidate="novalidate"  method="POST" action="/kriteria/{{ $kriteria->id }}">
             @method('put')
             @csrf
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label class="flex flex-col sm:flex-row"> Kode Kriteria <span
                         class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">Required, Unique</span>
                 </label>
@@ -18,7 +18,7 @@
                     @error('kode_kriteria')
                     <label id="name-error" class="error" for="name">{{ $message }}</label>
                     @enderror
-            </div>
+            </div> --}}
             <div class="mb-3">
                 <label class="flex flex-col sm:flex-row">Nama Kriteria <span
                         class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">Required</span>
