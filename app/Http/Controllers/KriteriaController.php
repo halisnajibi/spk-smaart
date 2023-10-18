@@ -50,12 +50,13 @@ class KriteriaController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
+            'tahun_id' => 'required',
             'kode_kriteria' => 'required|unique:kriterias',
             'nama_kriteria' => 'required',
             'bobot' => 'required',
             'label' => 'required'
           ]);
-          $validateData['tahun_id'] = $request->tahun_id;
+        //   $validateData['tahun_id'] = $request->tahun_id;
           Kriteria::create($validateData);
           return \redirect('/kriteria')->with('alert','Data kriteria disimpan');
     }
