@@ -1,20 +1,21 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HasilSmartController;
+use App\Models\Kriteria;
+use App\Models\HasilSmart;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TahunController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KriteriaController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PengolahanNilaiController;
-use App\Http\Controllers\PenilaianController;
-use App\Http\Controllers\PerhitunganController;
 use App\Http\Controllers\RangkingController;
-use App\Http\Controllers\ReportController;
-use App\Http\Controllers\TahunController;
-use App\Http\Controllers\UserController;
-use App\Models\HasilSmart;
-use App\Models\Kriteria;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PenilaianController;
+use App\Http\Controllers\HasilSmartController;
+use App\Http\Controllers\PerhitunganController;
+use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\PengolahanNilaiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +29,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [LoginController::class,'index'])->middleware('guest')->name('login');
-Route::post('/', [LoginController::class,'authenticate']);
+Route::post('/', [LoginController::class,'authenticate'])->middleware('guest');
 Route::get('/logout', [LoginController::class,'logout'])->middleware('auth'); 
 Route::get('/dashboard', [DashboardController::class,'index'])->middleware('auth');
 
+//reset password
+Route::get('/lupa-password', [ResetPasswordController::class,'index'])->middleware('guest')->name('lupa-password');
+Route::post('/lupa-password',[ResetPasswordController::class,'lupaPassword'])->middleware('guest')->name('password.email');
+Route::get('/lupa-password/{token}', function ($token) {
+    return view('reset.reset-password', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
+Route::post('/reset-password',[ResetPasswordController::class,'rubahPassword'])->middleware('guest')->name('password.update');
 //PROFIEL
 Route::get('/user', [UserController::class,'index'])->middleware('auth');
 Route::post('/user', [UserController::class,'update'])->middleware('auth');

@@ -22,7 +22,7 @@
                         class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">Required</span>
                 </label>
                 <input type="text" name="nama" class="input w-full border mt-2 @error('nama') error @enderror()" placeholder="Nama"
-                    minlength="2">
+                    minlength="2" value="{{ old('nama') }}">
                     @error('nama')
                     <label id="name-error" class="error" for="name">{{ $message }}</label>
                     @enderror
@@ -32,7 +32,7 @@
                         class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">Required,Unique</span>
                 </label>
                 <input type="text" name="nik" class="input w-full border mt-2 @error('nik') error @enderror()" placeholder="Nik"
-                    minlength="2">
+                    minlength="2" value="{{ old('nik') }}">
                     @error('nik')
                     <label id="name-error" class="error" for="name">{{ $message }}</label>
                     @enderror
