@@ -57,8 +57,8 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="intro-x mt-2 text-gray-500 xl:hidden text-center">Dinas Komunikasi dan Informatika</div>
                         <form action="{{ route('password.update') }}" method="POST">
                         @csrf
-                        <input type="text" value="{{ request()->token }}" name="token">
-                        <input type="text" value="{{ request()->email }}" name="email">
+                        <input type="hidden" value="{{ request()->token }}" name="token">
+                        <input type="hidden" value="{{ request()->email }}" name="email">
                         <div class="intro-x mt-8">
                             <input type="password" class="intro-x login__input input input--lg border border-gray-300 block  @error('password') error @enderror()" placeholder="Password" name="password" autocomplete="off">
                             @error('password')
