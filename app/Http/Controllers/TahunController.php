@@ -38,6 +38,7 @@ class TahunController extends Controller
    */
   public function store(Request $request)
   {
+    \dd(\config('app.locale'));
     $validateData = $request->validate([
       'tahun' => 'required',
       'keterangan' => 'required'

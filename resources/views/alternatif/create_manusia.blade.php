@@ -6,7 +6,7 @@
         </h2>
     </div>
     <div class="intro-y datatable-wrapper box p-5 mt-5">
-        <form class="validate-form" novalidate="novalidate"  method="POST" action="/alternatif">
+        <form class="validate-form"  method="POST" action="/alternatif">
             @csrf
             <input type="hidden" name="status_alternatif" value="manusia">
             <label>Tahun Keputusan</label>

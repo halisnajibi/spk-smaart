@@ -54,7 +54,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-6 text-white"> <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i> Login gagal!!Harap coba lagi. <i data-feather="x" class="w-4 h-4 ml-auto"></i> </div>
                         @endif
                         <div class="intro-x mt-2 text-gray-500 xl:hidden text-center">Dinas Komunikasi dan Informatika</div>
-                        <form action="/" method="POST">
+                        <form action="/" method="POST" class="validate-form">
                         @csrf
                         <div class="intro-x mt-8">
                             <input type="text" class="intro-x login__input input input--lg border border-gray-300 block  @error('username') error @enderror()" placeholder="Username" name="username" autocomplete="off">
