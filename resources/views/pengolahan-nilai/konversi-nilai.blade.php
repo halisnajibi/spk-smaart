@@ -1,26 +1,26 @@
-
 @extends('layouts.app')
 @section('content')
-<a href="/pengolahan/nilai" class="button w-32 mr-2 my-2 flex items-center justify-center bg-theme-9 text-white">
-    <i data-feather="corner-up-left" class="w-4 h-4 mr-2"></i> Kembali </a>
+    <a href="/pengolahan/nilai" class="button w-32 mr-2 my-2 flex items-center justify-center bg-theme-9 text-white">
+        <i data-feather="corner-up-left" class="w-4 h-4 mr-2"></i> Kembali </a>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
             Data Nilai Alternatif & Bobot Kriteria
         </h2>
         @if ($tahun->status == 'dibuat')
-        <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-            <form action="/perhitungan" method="post">
-                @csrf
-                <input type="hidden" name="tahun_id" value="{{ $tahun_id }}">
-                <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-1 text-white" type="submit">
-                    <i data-feather="plus" class="w-2 h-4 mr-2"></i> Konversi Nilai</button>
-            </form>
-        </div>     
+            <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
+                <form action="/perhitungan" method="post">
+                    @csrf
+                    <input type="hidden" name="tahun_id" value="{{ $tahun_id }}">
+                    <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-1 text-white"
+                        type="submit">
+                        <i data-feather="plus" class="w-2 h-4 mr-2"></i> Konversi Nilai</button>
+                </form>
+            </div>
         @else
-        <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-            <button class="button w-38 mr-2 mb-2 flex items-center justify-center bg-theme-9 text-white" type="submit">
-                <i data-feather="thumbs-up" class="w-4 h-4 mr-2"></i>Sudah Konversi</button>
-        </div>
+            <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
+                <button class="button w-38 mr-2 mb-2 flex items-center justify-center bg-theme-9 text-white" type="submit">
+                    <i data-feather="thumbs-up" class="w-4 h-4 mr-2"></i>Sudah Konversi</button>
+            </div>
         @endif
     </div>
     <div class="rounded-md px-5 py-4 mb-2 border text-gray-700">
@@ -29,7 +29,7 @@
             <div class="text-xs bg-gray-600 px-1 rounded-md text-white ml-auto">{{ $tahun->status }}</div>
         </div>
         <div class="mt-3">{{ $tahun->keterangan }}.</div>
-    </div> 
+    </div>
     <div class="intro-y datatable-wrapper box p-5 mt-5">
         <table class="table table-report table-report--bordered display datatable w-full">
             <thead>
@@ -48,11 +48,13 @@
                             <div class="font-medium whitespace-no-wrap">{{ $loop->iteration }}</div>
                         </td>
                         <td class="border-b">
-                            <div class="font-medium whitespace-no-wrap">{{ $penilaian->karyawan->nama }}</div>
+                            <div class="font-medium whitespace-no-wrap">
+                                {{ $penilaian->alternatif->nama ? $penilaian->alternatif->nama : $penilaian->alternatif->judul }}
+                            </div>
                         </td>
                         </td>
                         @php
-                            $nilai = PenelaianHelp::getKriteria($penilaian->karyawan_id);
+                            $nilai = PenelaianHelp::getKriteria($penilaian->alternatif_id);
                         @endphp
                         @foreach ($nilai as $a)
                             <td class="border-b">

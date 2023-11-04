@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TahunController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\RangkingController;
 use App\Http\Controllers\DashboardController;
@@ -51,8 +51,8 @@ Route::get('/kriteria/bobot',[KriteriaController::class,'bobot'])->middleware('a
 Route::resource('/kriteria',KriteriaController::class)->middleware('auth');
 Route::post('/kriteria/cari',[KriteriaController::class,'cariKriteria'])->middleware('auth');
 Route::post('/kriteria/bobot/cari',[KriteriaController::class,'cariKonversiBobot'])->middleware('auth');
-Route::resource('/alternatif',KaryawanController::class)->middleware('auth');
-Route::post('/alternatif/cari',[KaryawanController::class,'cariAlternatif'])->middleware('auth');
+Route::resource('/alternatif',AlternatifController::class)->middleware('auth');
+Route::post('/alternatif/cari',[AlternatifController::class,'cariAlternatif'])->middleware('auth');
 
 // PENILAIAN
 Route::resource('/penilaian',PenilaianController::class)->middleware('auth');

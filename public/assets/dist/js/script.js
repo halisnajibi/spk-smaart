@@ -78,7 +78,7 @@ $(document).ready(function() {
                     <input type="hidden" name="kriteria_id[]" value="`+row.id+`">
                     <label class="flex flex-col sm:flex-row" for="">`+row.nama_kriteria+`<span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">Required</span></label>
                     <input type="text" name="nilai[]" class="input w-full border mt-2"
-                        placeholder="`+row.nama_kriteria+`" minlength="2">
+                        placeholder="10-99" minlength="2">
                    
                 </div>`
                 alternatifBox.append(input);

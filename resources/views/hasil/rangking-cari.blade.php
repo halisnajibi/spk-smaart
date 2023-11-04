@@ -5,9 +5,10 @@
             Hasil Akhir Perhitungan & Perangkingan
         </h2>
         <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-            <button class="button w-36 mr-2 mb-2 flex items-center justify-center bg-theme-1 text-white" type="button" id="simpan-riwayat">
+            <button class="button w-36 mr-2 mb-2 flex items-center justify-center bg-theme-1 text-white" type="button"
+                id="simpan-riwayat">
                 <i data-feather="save" class="w-4 h-4 mr-2"></i>Simpan Riwayat Perangkingan</button>
-        </div>   
+        </div>
     </div>
     <div class="rounded-md px-5 py-4 mb-2 border text-gray-700">
         <div class="flex items-center">
@@ -46,7 +47,7 @@
                 @php
                     // Sort $hasil array based on $totalNilai in descending order
                     $sortedHasil = $hasil->sortByDesc(function ($item) {
-                        $nilai = PenelaianHelp::getRangking($item->karyawan_id);
+                        $nilai = PenelaianHelp::getRangking($item->alternatif_id);
                         $totalNilai = 0;
                         foreach ($nilai as $a) {
                             $totalNilai += $a->hasil_akhir;
@@ -55,13 +56,13 @@
                     });
                     $rank = 1;
                 @endphp
-           
+
                 @foreach ($sortedHasil as $item)
                     @if ($loop->first)
                         @php
                             $firstItemData = [
                                 'tahun_id' => $item->tahun_id,
-                                'karyawan_id' => $item->karyawan_id,
+                                'alternatif_id' => $item->alternatif_id,
                             ];
                         @endphp
                     @endif
@@ -70,16 +71,16 @@
                             <div class="font-medium whitespace-no-wrap">{{ $loop->iteration }}</div>
                         </td>
                         @if ($item->karyawan->status_alternatif == 'manusia')
-                        <td class="border-b">
-                            <div class="font-medium whitespace-no-wrap">{{ $item->karyawan->nama }}</div>
-                        </td>
+                            <td class="border-b">
+                                <div class="font-medium whitespace-no-wrap">{{ $item->karyawan->nama }}</div>
+                            </td>
                         @else
-                        <td class="border-b">
-                            <div class="font-medium whitespace-no-wrap">{{ $item->karyawan->judul }}</div>
-                        </td>
+                            <td class="border-b">
+                                <div class="font-medium whitespace-no-wrap">{{ $item->karyawan->judul }}</div>
+                            </td>
                         @endif
                         @php
-                            $nilai = PenelaianHelp::getRangking($item->karyawan_id);
+                            $nilai = PenelaianHelp::getRangking($item->alternatif_id);
                             $totalNilai = 0;
                         @endphp
                         @foreach ($nilai as $a)
@@ -107,5 +108,5 @@
 
     {{-- simpan riwayat perangkingan --}}
     <input type="hidden" value="{{ $firstItemData['tahun_id'] }}" id="tahunID">
-    <input type="hidden" value="{{ $firstItemData['karyawan_id'] }}" id="karyawanID">
+    <input type="hidden" value="{{ $firstItemData['alternatif_id'] }}" id="karyawanID">
 @endsection

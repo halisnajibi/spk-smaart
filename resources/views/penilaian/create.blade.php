@@ -22,7 +22,7 @@
             </div>
 
             <div class="my-2">
-                <select class="select2 w-full " name="karyawan_id" id="alternatif">
+                <select class="select2 w-full " name="alternatif_id" id="alternatif">
                     <option value="">--Pilih--</option>
                 </select>
             </div>

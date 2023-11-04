@@ -53,6 +53,7 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
         .laporan {
             font-size: 15px;
             font-weight: bold;
@@ -60,6 +61,7 @@
             margin-bottom: 10px;
             text-transform: capitalize;
         }
+
         .address {
             font-size: 14px;
             border-bottom: 2px solid black;
@@ -76,19 +78,20 @@
         <div class="company-info">
             <div class="pemerintah">PEMERINTAH DAERAH HULU SUNGAI SELATAN</div>
             <div class="dinas">DINAS KOMUNIKASI DAN INFORMATIKA</div>
-            <div class="laporan">LAPORAN DATA PENILAIAN ALTERNATIF {{ Str::upper($tahun->kode)  }}-{{ $tahun->tahun }}</div>
+            <div class="laporan">LAPORAN DATA PENILAIAN ALTERNATIF {{ Str::upper($tahun->kode) }}-{{ $tahun->tahun }}
+            </div>
             <div class="address">JL.Aluh Idut, Kandangan Utara, Kec. Kandangan, Kabupaten Hulu Sungai Selatan,
                 Kalimantan Selatan 71217</div>
         </div>
     </div>
-      <table width="100%" class="table-body">
+    <table width="100%" class="table-body">
         <thead>
             <tr>
                 <th>No</th>
                 <th>Alternatif</th>
                 @foreach ($kriterias as $kriteria)
-                <th>{{ $kriteria->nama_kriteria }} ({{ $kriteria->label }})</th>
-            @endforeach
+                    <th>{{ $kriteria->nama_kriteria }} ({{ $kriteria->label }})</th>
+                @endforeach
             </tr>
         </thead>
         <tbody>
@@ -96,18 +99,18 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     @if ($penilaian->karyawan->status_alternatif == 'manusia')
-                    <td>{{ $penilaian->karyawan->nama }}</td>
+                        <td>{{ $penilaian->karyawan->nama }}</td>
                     @else
-                    <td>{{ $penilaian->karyawan->judul }}</td>
+                        <td>{{ $penilaian->karyawan->judul }}</td>
                     @endif
                     @php
-                    $nilai = PenelaianHelp::getKriteria($penilaian->karyawan_id);
-                @endphp
-                  @foreach ($nilai as $a)
-                  <td>
-                    {{ $a->nilai }}
-                  </td>
-              @endforeach
+                        $nilai = PenelaianHelp::getKriteria($penilaian->alternatif_id);
+                    @endphp
+                    @foreach ($nilai as $a)
+                        <td>
+                            {{ $a->nilai }}
+                        </td>
+                    @endforeach
                 </tr>
             @endforeach
         </tbody>

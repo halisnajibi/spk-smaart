@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Penilaian;
 use App\Models\Kriteria;
-use App\Models\Karyawan;
+use App\Models\Alternatif;
 use App\Models\Tahun;
 
 class PenilaianController extends Controller
@@ -18,7 +18,7 @@ class PenilaianController extends Controller
     public function index()
     {
         $penilaian =  Penilaian::all();
-        $penilaian =  $penilaian->unique('karyawan_id');
+        $penilaian =  $penilaian->unique('alternatif_id');
         return \view('penilaian.index', [
             'tahuns' => Tahun::all(),
             'kriterias' => Kriteria::all(),
@@ -35,11 +35,11 @@ class PenilaianController extends Controller
     {
         // return \view('penilaian.create', [
         //     'kriterias' => Kriteria::all(),
-        //     'karyawans' => Karyawan::all()
+        //     'alternatifs' => Alternatif::all()
         // ]);
         return \view('penilaian.create', [
-            'tahuns' => Tahun::where('status','dibuat')->get(),
-            'karyawans' => Karyawan::all()
+            'tahuns' => Tahun::where('status', 'dibuat')->get(),
+            'alternatifs' => Alternatif::all()
         ]);
     }
 
@@ -53,7 +53,7 @@ class PenilaianController extends Controller
     {
         // Validasi data yang dikirimkan dari formulir
         $request->validate([
-            'karyawan_id' => 'required|integer|unique:penilaians',
+            'alternatif_id' => 'required|integer|unique:penilaians',
             'kriteria_id' => 'required|array',
             'kriteria_id.*' => 'exists:kriterias,id',
             'nilai' => 'required|array',
@@ -64,7 +64,7 @@ class PenilaianController extends Controller
         foreach ($request->input('kriteria_id') as $index => $kriteriaId) {
             Penilaian::create([
                 'tahun_id' => $request->input('tahun_id'),
-                'karyawan_id' => $request->input('karyawan_id'),
+                'alternatif_id' => $request->input('alternatif_id'),
                 'kriteria_id' => $kriteriaId,
                 'nilai' => $request->input('nilai')[$index],
             ]);
@@ -91,11 +91,11 @@ class PenilaianController extends Controller
      */
     public function edit($id)
     {
-        $penilaian = Penilaian::where('karyawan_id', $id)->get();
+        $penilaian = Penilaian::where('alternatif_id', $id)->get();
         return \view('penilaian.edit', [
             'penilaian' => $penilaian,
             'kriterias' => Kriteria::all(),
-            'karyawans' => Karyawan::all()
+            'alternatifs' => Alternatif::all()
         ]);
     }
 
@@ -118,7 +118,7 @@ class PenilaianController extends Controller
 
         // Simpan data ke dalam tabel penilaian
         foreach ($request->input('kriteria_id') as $index => $kriteriaId) {
-            $penilaian = Penilaian::where('karyawan_id', $request->input('karyawan_id_lama'))
+            $penilaian = Penilaian::where('alternatif_id', $request->input('alternatif_id_lama'))
                 ->where('kriteria_id', $kriteriaId)
                 ->first();
             if ($penilaian) {
@@ -141,10 +141,8 @@ class PenilaianController extends Controller
      */
     public function destroy($id)
     {
-        Penilaian::where('karyawan_id', $id)->delete();
+        $angka = preg_replace('/[^0-9]/', '', $id);
+        Penilaian::where('alternatif_id', $angka)->delete();
         return \redirect('/penilaian')->with('alert', 'Data penilaian dihapus');
     }
-
-
-   
 }

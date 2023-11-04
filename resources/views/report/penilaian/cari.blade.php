@@ -1,12 +1,13 @@
 @extends('layouts.app')
 @section('content')
-<a href="/laporan/penilaian" class="button w-32 mr-2 my-2 flex items-center justify-center bg-theme-9 text-white">
-    <i data-feather="corner-up-left" class="w-4 h-4 mr-2"></i> Kembali </a>
+    <a href="/laporan/penilaian" class="button w-32 mr-2 my-2 flex items-center justify-center bg-theme-9 text-white">
+        <i data-feather="corner-up-left" class="w-4 h-4 mr-2"></i> Kembali </a>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
             Data Penilai Alternatif {{ $tahun->kode }}-{{ $tahun->tahun }}
         </h2>
-        <a href="/laporan/penilaian/cetak/{{ $tahun->id }}" target="_blank" class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-1 text-white">
+        <a href="/laporan/penilaian/cetak/{{ $tahun->id }}" target="_blank"
+            class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-1 text-white">
             <i data-feather="printer" class="w-4 h-4 mr-2"></i> Cetak Data </a>
     </div>
     <div class="intro-y datatable-wrapper box p-5 mt-5">
@@ -27,17 +28,17 @@
                             <div class="font-medium whitespace-no-wrap">{{ $loop->iteration }}</div>
                         </td>
                         @if ($penilaian->karyawan->status_alternatif == 'manusia')
-                        <td class="border-b">
-                            <div class="font-medium whitespace-no-wrap">{{ $penilaian->karyawan->nama }}</div>
-                        </td>
+                            <td class="border-b">
+                                <div class="font-medium whitespace-no-wrap">{{ $penilaian->karyawan->nama }}</div>
+                            </td>
                         @else
-                        <td class="border-b">
-                            <div class="font-medium whitespace-no-wrap">{{ $penilaian->karyawan->judul }}</div>
-                        </td>
+                            <td class="border-b">
+                                <div class="font-medium whitespace-no-wrap">{{ $penilaian->karyawan->judul }}</div>
+                            </td>
                         @endif
                         </td>
                         @php
-                            $nilai = PenelaianHelp::getKriteria($penilaian->karyawan_id);
+                            $nilai = PenelaianHelp::getKriteria($penilaian->alternatif_id);
                         @endphp
                         @foreach ($nilai as $a)
                             <td class="border-b">
@@ -90,14 +91,13 @@
             </div>
             <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal"
                     class="button w-24 border bg-gray-300 mr-1">Cancel</button>
-                    <form method="POST" id="form-hapus">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="button w-24 border bg-theme-6 text-white mt-3 mr-1" id="tombol-hapus">Hapus </button>
-                    </form>
+                <form method="POST" id="form-hapus">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="button w-24 border bg-theme-6 text-white mt-3 mr-1"
+                        id="tombol-hapus">Hapus </button>
+                </form>
             </div>
         </div>
     </div>
-    @endsection
-
-
+@endsection

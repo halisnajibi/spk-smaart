@@ -155,7 +155,10 @@
     <script>
         // Memunculkan modal saat halaman dimuat
         window.addEventListener('DOMContentLoaded', (event) => {
-          $('#success-modal-preview').modal('show'); // Menggunakan jQuery untuk memicu modal
+            if($('#success-modal-preview').length){
+
+                $('#success-modal-preview').modal('show'); // Menggunakan jQuery untuk memicu modal
+            }
         });
       </script>
       

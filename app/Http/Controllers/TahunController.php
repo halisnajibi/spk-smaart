@@ -38,7 +38,6 @@ class TahunController extends Controller
    */
   public function store(Request $request)
   {
-    \dd(\config('app.locale'));
     $validateData = $request->validate([
       'tahun' => 'required',
       'keterangan' => 'required'
@@ -91,11 +90,14 @@ class TahunController extends Controller
       'tahun' => 'required',
       'keterangan' => 'required'
     ];
-    // if ($request->kode != $tahun->kode) {
-    //   $rules['kode'] = 'required|unique:tahuns';
-    // }
+    $words = explode(' ', $request->keterangan); // Memisahkan kata-kata berdasarkan spasi
+    $kode = ''; // Inisialisasi variabel untuk menyimpan huruf pertama
+    foreach ($words as $word) {
+      $kode .= substr($word, 0, 1); // Mengambil huruf pertama dari setiap kata
+    }
     $validateData = $request->validate($rules);
     $validateData['status'] = 'dibuat';
+    $validateData['kode'] ='t'.'-'.$request->tahun.'-'.$kode; 
     Tahun::where('id', $tahun->id)->update($validateData);
     return \redirect('/tahun')->with('alert', 'Data tahun keputusan diupdate');
   }

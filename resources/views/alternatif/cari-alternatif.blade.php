@@ -15,6 +15,7 @@
         <div class="mt-3">{{ $tahun->keterangan }}.</div>
     </div>
     <div class="intro-y datatable-wrapper box p-5 mt-5">
+        @if (count($alternatifs))
         @if ($alternatifs[0]->status_alternatif == 'manusia')         
         <table class="table table-report table-report--bordered display datatable w-full">
             <thead>
@@ -73,7 +74,7 @@
                         </td>
                         <td class="text-center border-b">
                             <div class="flex sm:justify-center">
-                                <div class="intro-x w-10 h-10 image-fit">
+                                <div class="intro-x w-20 h-10 image-fit">
                                     {{ $alternatif->judul }}
                                 </div>
                             </div>
@@ -93,6 +94,10 @@
             </tbody>
         </table>
         @endif
+        @else
+        <h4>data masih kosong</h4>
+        @endif
+     
     </div>
     {{-- modal  hapus --}}
     <div class="modal" id="delete-modal-preview">

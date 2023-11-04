@@ -2,14 +2,17 @@
 @section('content')
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-            Form Edit Data Penilaian {{ $penilaian[0]->karyawan->nama }}
+            Form Edit Data Penilaian 
+            {{ $penilaian[0]->alternatif->nama > 50 ? $penilaian[0]->alternatif->nama : $penilaian[0]->alternatif->judul }}
+
         </h2>
     </div>
     <div class="intro-y datatable-wrapper box p-5 mt-5">
-        <form class="validate-form" novalidate="novalidate" method="POST" action="/penilaian/{{ $penilaian[0]->karyawan_id }}">
+        <form class="validate-form" novalidate="novalidate" method="POST"
+            action="/penilaian/{{ $penilaian[0]->alternatif_id }}">
             @method('put')
             @csrf
-            <input type="hidden" name="karyawan_id_lama" value="{{ $penilaian[0]->karyawan_id }}">
+            <input type="hidden" name="alternatif_id_lama" value="{{ $penilaian[0]->alternatif_id }}">
             @foreach ($penilaian as $nilai)
                 @foreach ($kriterias as $item)
                     @if ($nilai->kriteria_id == $item->id)

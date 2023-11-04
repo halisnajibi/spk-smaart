@@ -103,10 +103,10 @@
                      <td>{{ $riwayat->tahun->kode }}</td>
                     <td>{{ $riwayat->tahun->tahun }}</td>
                     <td>{{ $riwayat->tahun->keterangan }}</td>
-                    @if ($riwayat->karyawan->status_alternatif == 'manusia')
-                        <td>{{ $riwayat->karyawan->nama }}</td>
+                    @if ($riwayat->alternatif->status_alternatif == 'manusia')
+                        <td>{{ $riwayat->alternatif->nama }}</td>
                     @else
-                        <td>{{ $riwayat->karyawan->judul }}</td>
+                        <td>{{ $riwayat->alternatif->judul }}</td>
                     @endif
                 </tr>
             @endforeach

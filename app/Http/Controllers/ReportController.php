@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tahun;
-use App\Models\Karyawan;
+use App\Models\Alternatif;
 use App\Models\Kriteria;
 use App\Models\Penilaian;
 use App\Models\Perangkingan;
@@ -59,7 +59,7 @@ class ReportController extends Controller
     }
     public function alternatifReportCari(Request $request)
     {
-        $alternatif = Karyawan::where('tahun_id', $request->tahun_id)->get();
+        $alternatif = Alternatif::where('tahun_id', $request->tahun_id)->get();
         return \view('report.alternatif.cari', [
             'alternatifs' => $alternatif,
         ]);
@@ -67,7 +67,7 @@ class ReportController extends Controller
 
     public function alternatifCetak($idTahun)
     {
-        $alternatif = Karyawan::where('tahun_id', $idTahun)->get();
+        $alternatif = Alternatif::where('tahun_id', $idTahun)->get();
         $pdf = Pdf::loadView('report.alternatif.pdf', [
             'alternatifs' => $alternatif,
             'tahun' => Tahun::find($idTahun)
@@ -85,7 +85,7 @@ class ReportController extends Controller
     public function penilaianReportCari(Request $request)
     {
         $penilaian =  Penilaian::where('tahun_id', $request->tahun_id)->get();
-        $penilaian =  $penilaian->unique('karyawan_id');
+        $penilaian =  $penilaian->unique('alternatif_id');
         return \view('report.penilaian.cari', [
             'kriterias' => Kriteria::where('tahun_id', $request->tahun_id)->get(),
             'penilaians' => $penilaian,
@@ -97,7 +97,7 @@ class ReportController extends Controller
     public function penilaianCetak($idTahun)
     {
         $penilaian =  Penilaian::where('tahun_id', $idTahun)->get();
-        $penilaian =  $penilaian->unique('karyawan_id');
+        $penilaian =  $penilaian->unique('alternatif_id');
         $pdf = Pdf::loadView('report.penilaian.pdf', [
             'kriterias' => Kriteria::where('tahun_id', $idTahun)->get(),
             'penilaians' => $penilaian,
@@ -117,7 +117,7 @@ class ReportController extends Controller
     public function skorReportCari(Request $request)
     {
         $tahunId = $request->tahun_id;
-        $hasilPenilaian = Karyawan::whereHas('penilaian', function ($query) use ($tahunId) {
+        $hasilPenilaian = Alternatif::whereHas('penilaian', function ($query) use ($tahunId) {
             $query->where('tahun_id', $tahunId);
         })
             ->with(['penilaian' => function ($query) use ($tahunId) {
@@ -136,7 +136,7 @@ class ReportController extends Controller
     public function skorCetak($tahunId)
     {
 
-        $hasilPenilaian = Karyawan::whereHas('penilaian', function ($query) use ($tahunId) {
+        $hasilPenilaian = Alternatif::whereHas('penilaian', function ($query) use ($tahunId) {
             $query->where('tahun_id', $tahunId);
         })
             ->with(['penilaian' => function ($query) use ($tahunId) {
@@ -162,21 +162,21 @@ class ReportController extends Controller
     }
     public function rekomendasiReportCari(Request $request)
     {
-        $rangking =  Perangkingan::where('tahun_id',$request->tahun_id)->get();
-        $rangking =  $rangking->unique('karyawan_id');
-          return \view('report.rekomendasi.cari',[
-            'kriterias' => Kriteria::where('tahun_id',$request->tahun_id)->get(),
-              'hasil' => $rangking,
-              'tahun' => Tahun::find($request->tahun_id)
-          ]);
+        $rangking =  Perangkingan::where('tahun_id', $request->tahun_id)->get();
+        $rangking =  $rangking->unique('alternatif_id');
+        return \view('report.rekomendasi.cari', [
+            'kriterias' => Kriteria::where('tahun_id', $request->tahun_id)->get(),
+            'hasil' => $rangking,
+            'tahun' => Tahun::find($request->tahun_id)
+        ]);
     }
 
     public function rekomendasiCetak($idTahun)
     {
-        $rangking =  Perangkingan::where('tahun_id',$idTahun)->get();
-        $rangking =  $rangking->unique('karyawan_id');
+        $rangking =  Perangkingan::where('tahun_id', $idTahun)->get();
+        $rangking =  $rangking->unique('alternatif_id');
         $pdf = Pdf::loadView('report.rekomendasi.pdf', [
-            'kriterias' => Kriteria::where('tahun_id',$idTahun)->get(),
+            'kriterias' => Kriteria::where('tahun_id', $idTahun)->get(),
             'hasil' => $rangking,
             'tahun' => Tahun::find($idTahun)
         ]);
@@ -187,14 +187,14 @@ class ReportController extends Controller
     public function riwayatReport()
     {
         return \view('report.riwayat.index', [
-            'riwayats' => RiwayatPerangkingan::orderBy('tahun_id','desc')->get()
+            'riwayats' => RiwayatPerangkingan::orderBy('tahun_id', 'desc')->get()
         ]);
     }
 
     public function riwayatCetak()
     {
         $pdf = Pdf::loadView('report.riwayat.pdf', [
-            'riwayats' => RiwayatPerangkingan::orderBy('tahun_id','desc')->get()
+            'riwayats' => RiwayatPerangkingan::orderBy('tahun_id', 'desc')->get()
         ]);
         return $pdf->stream('laporan-riwayat-perangkingan.pdf');
     }

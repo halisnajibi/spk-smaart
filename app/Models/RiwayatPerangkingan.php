@@ -9,13 +9,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class RiwayatPerangkingan extends Model
 {
     use HasFactory;
-    protected $guarded=[];
+    protected $guarded = [];
 
-    public function tahun(){
+    public function tahun()
+    {
         return $this->belongsTo(Tahun::class);
     }
 
-    public function karyawan(){
-        return  $this->belongsTo(Karyawan::class);
+    public function alternatif()
+    {
+        return  $this->belongsTo(Alternatif::class);
     }
 }

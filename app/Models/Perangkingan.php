@@ -11,12 +11,14 @@ class Perangkingan extends Model
     protected $guarded = [];
 
 
-public function penilaian(){
-    return $this->belongsTo(Penilaian::class);
-}
-public function karyawan(){
-    return $this->belongsTo(Karyawan::class);
-}
+    public function penilaian()
+    {
+        return $this->belongsTo(Penilaian::class);
+    }
+    public function karyawan()
+    {
+        return $this->belongsTo(Alternatif::class,'alternatif_id','id');
+    }
     public function scopeRankedByHasilAkhir($query)
     {
         return $query->orderBy('hasil_akhir', 'desc');

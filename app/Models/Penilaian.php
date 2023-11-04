@@ -10,8 +10,9 @@ class Penilaian extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function karyawan(){
-        return $this->belongsTo(Karyawan::class);
+    public function alternatif()
+    {
+        return $this->belongsTo(Alternatif::class,'alternatif_id','id');
     }
 
     public function kriteria()

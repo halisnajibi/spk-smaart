@@ -10,7 +10,7 @@
         <select class="select2 sm:w-full" id="kriteria-tahun" name="tahun_id" required>
             <option value="">--Pilih--</option>
             @foreach ($tahuns as $tahun)
-            <option value="{{ $tahun->id }}">{{ $tahun->kode }}-{{ $tahun->tahun }}</option>
+            <option value="{{ $tahun->id }}">{{ $tahun->tahun }}-{{ $tahun->keterangan }}</option>
             @endforeach
         </select>
         <button  class="button w-32 mr-2 my-2 flex items-center justify-center bg-theme-1 text-white" type="submit">

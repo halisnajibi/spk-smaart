@@ -30,10 +30,10 @@
                         </td>
                         <td class="text-center border-b">{{ $riwayat->tahun->tahun }}</td>
                         <td class="text-center border-b">{{ $riwayat->tahun->keterangan }}</td>
-                     @if ($riwayat->karyawan->status_alternatif == 'manusia')
-                     <td class="text-center border-b">{{ $riwayat->karyawan->nama }}</td>
+                     @if ($riwayat->alternatif->status_alternatif == 'manusia')
+                     <td class="text-center border-b">{{ $riwayat->alternatif->nama }}</td>
                      @else
-                     <td class="text-center border-b">{{ $riwayat->karyawan->judul }}</td>
+                     <td class="text-center border-b">{{ $riwayat->alternatif->judul }}</td>
                      @endif
                     </tr>
                 @endforeach

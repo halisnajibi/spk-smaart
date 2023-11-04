@@ -53,6 +53,7 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
         .laporan {
             font-size: 15px;
             font-weight: bold;
@@ -60,6 +61,7 @@
             margin-bottom: 10px;
             text-transform: capitalize;
         }
+
         .address {
             font-size: 14px;
             border-bottom: 2px solid black;
@@ -76,28 +78,29 @@
         <div class="company-info">
             <div class="pemerintah">PEMERINTAH DAERAH HULU SUNGAI SELATAN</div>
             <div class="dinas">DINAS KOMUNIKASI DAN INFORMATIKA</div>
-            <div class="laporan">LAPORAN HASIL AKHIR & REKOMENDASI {{ Str::upper($tahun->kode)  }}-{{ $tahun->tahun }}</div>
+            <div class="laporan">LAPORAN HASIL AKHIR & REKOMENDASI {{ Str::upper($tahun->kode) }}-{{ $tahun->tahun }}
+            </div>
             <div class="address">JL.Aluh Idut, Kandangan Utara, Kec. Kandangan, Kabupaten Hulu Sungai Selatan,
                 Kalimantan Selatan 71217</div>
         </div>
     </div>
-      <table width="100%" class="table-body">
+    <table width="100%" class="table-body">
         <thead>
             <tr>
                 <th>No</th>
                 <th>Alternatif</th>
-                    @foreach ($kriterias as $kriteria)
-                        <th>{{ $kriteria->nama_kriteria }}</th>
-                    @endforeach
-                    <th>Total Nilai</th>
-                    <th>Rank</th>
+                @foreach ($kriterias as $kriteria)
+                    <th>{{ $kriteria->nama_kriteria }}</th>
+                @endforeach
+                <th>Total Nilai</th>
+                <th>Rank</th>
             </tr>
         </thead>
         <tbody>
             @php
                 // Sort $hasil array based on $totalNilai in descending order
                 $sortedHasil = $hasil->sortByDesc(function ($item) {
-                    $nilai = PenelaianHelp::getRangking($item->karyawan_id);
+                    $nilai = PenelaianHelp::getRangking($item->alternatif_id);
                     $totalNilai = 0;
                     foreach ($nilai as $a) {
                         $totalNilai += $a->hasil_akhir;
@@ -112,16 +115,16 @@
                         {{ $loop->iteration }}
                     </td>
                     @if ($item->karyawan->status_alternatif == 'manusia')
-                    <td>
-                        {{ $item->karyawan->nama }}
-                    </td>
+                        <td>
+                            {{ $item->karyawan->nama }}
+                        </td>
                     @else
-                    <td>
-                        {{ $item->karyawan->judul }}
-                    </td>
+                        <td>
+                            {{ $item->karyawan->judul }}
+                        </td>
                     @endif
                     @php
-                        $nilai = PenelaianHelp::getRangking($item->karyawan_id);
+                        $nilai = PenelaianHelp::getRangking($item->alternatif_id);
                         $totalNilai = 0;
                     @endphp
                     @foreach ($nilai as $a)

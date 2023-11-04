@@ -7,7 +7,7 @@ use App\Models\Perangkingan;
 class PenilaianHelp {
 
     public static function getKriteria($id) {
-        $data = Penilaian::where('karyawan_id', $id)->get();
+        $data = Penilaian::where('alternatif_id', $id)->get();
         return $data;
     }
 
@@ -22,7 +22,7 @@ class PenilaianHelp {
     }
 
     public static function getRangking($id) {
-        $data = Perangkingan::where('karyawan_id', $id)->get();
+        $data = Perangkingan::where('alternatif_id', $id)->get();
         return $data;
     }
 }
