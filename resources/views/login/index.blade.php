@@ -40,7 +40,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             Pendukung Keputusan
                         </div>
                         <div class="-intro-x mt-5 text-lg text-white">Dinas Komunikasi dan Informatika</div>
-                        <div class="-intro-x mt-5 text-white">Hulu Sungai Selatan</div>
+                        <div class="-intro-x mt-5 text-white">Hulu Sungai Selatan edit git</div>
                     </div>
                 </div>
                 <!-- END: Login Info -->
